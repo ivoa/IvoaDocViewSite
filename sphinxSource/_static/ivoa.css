@@ -1,0 +1,10 @@
+body {
+    font-family:  sans-serif;
+}
+h1, h2, h3 { color: #005A9C;}
+
+:link { color: #547FAA; background: transparent }
+:visited { color: #547FAA; background: transparent }
+a:active { color: #547FAA; background: transparent }
+
+a:link img, a:visited img { border-style: none } /* no border on img links */

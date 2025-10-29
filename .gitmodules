@@ -1,0 +1,36 @@
+[submodule "src/DALI"]
+	path = src/DALI
+	url = https://github.com/ivoa-std/DALI
+[submodule "src/VODataService"]
+	path = src/VODataService
+	url = https://github.com/ivoa-std/VODataService
+[submodule "src/VOResource"]
+	path = src/VOResource
+	url = https://github.com/ivoa-std/VOResource
+[submodule "src/ConeSearch"]
+	path = src/ConeSearch
+	url = https://github.com/ivoa-std/ConeSearch
+[submodule "src/VOTable"]
+	path = src/VOTable
+	url = https://github.com/ivoa-std/VOTable
+[submodule "src/UCDList"]
+	path = src/UCDList
+	url = https://github.com/ivoa-std/UCDList
+[submodule "src/ADQL"]
+	path = src/ADQL
+	url = https://github.com/ivoa-std/ADQL
+[submodule "src/TAP"]
+	path = src/TAP
+	url = https://github.com/ivoa-std/TAP
+[submodule "src/RegTAP"]
+	path = src/RegTAP
+	url = https://github.com/ivoa-std/RegTAP
+[submodule "src/UWS"]
+	path = src/UWS
+	url = https://github.com/ivoa-std/UWS
+[submodule "src/ivoatex"]
+	path = src/ivoatex
+	url = https://github.com/ivoa-std/ivoatex
+[submodule "src/IVOAArchitecture"]
+	path = src/IVOAArchitecture
+	url = https://github.com/ivoa-std/architecture

@@ -7,8 +7,9 @@ ROOTDIR:=$(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 export TEXINPUTS=.:ivoatex:
 
 SRCDIR := src
-SPHINXDIR := sphinxSource/idoc
-BUILDDIR := build
+SPHINXDIR :=sphinxSource/idoc
+BUILDDIR :=build
+PANDCUST :=pandocCustomization
 
 TEXDIRS=$(foreach t,$(texsource), $(SRCDIR)/$(t))
 SPDIRS=$(foreach t,$(texsource) $(htmlsource), $(SPHINXDIR)/$(t))
@@ -16,15 +17,11 @@ SPDIRS=$(foreach t,$(texsource) $(htmlsource), $(SPHINXDIR)/$(t))
 
 ALLTEX=$(foreach t,$(texsource), $(SRCDIR)/$(t)/$(t).tex )
 
-
+# do not include the html sources for now...
 ALLSP=$(foreach t,$(texsource), $(SPHINXDIR)/$(t)/$(t).rst )
 
 doSphinx: subdirs dolink_ivoatex $(ALLSP)
 	sphinx-build -M html ./sphinxSource $(BUILDDIR)
-
-
-
-
 
 
 subdirs: $(SPDIRS);
@@ -38,7 +35,7 @@ $(SPDIRS):
 define pandoc_rst_template =
 $$(SPHINXDIR)/$(1)/$(1).rst : $$(SRCDIR)/$(1)/$(1).tex
 	make -C $$(dir $$<)
-	cd $$(dir $$<);pandoc $$(notdir $$<) -f latex -t rst --metadata=title:$(1) -s --extract-media=$$(ROOTDIR)/$$(dir $$@) > $$(ROOTDIR)/$$@
+	cd $$(dir $$<);pandoc $$(notdir $$<) -f latex -t rst -N --metadata=status:WD -s --template=$$(ROOTDIR)/$$(PANDCUST)/default.rst --extract-media=$$(ROOTDIR)/$$(dir $$@) > $$(ROOTDIR)/$$@
 endef
 
 $(foreach f, $(texsource), $(eval $(call pandoc_rst_template,$(f))))

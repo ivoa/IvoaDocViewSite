@@ -38,7 +38,7 @@ $(SPDIRS):
 define pandoc_rst_template =
 $$(SPHINXDIR)/$(1)/$(1).rst : $$(SRCDIR)/$(1)/$(1).tex
 	make -C $$(dir $$<)
-	cd $$(dir $$<);pandoc $$(notdir $$<) -f latex -t rst --metadata=title:$(1) --extract-media=$$(ROOTDIR)/$$(dir $$@) > $$(ROOTDIR)/$$@
+	cd $$(dir $$<);pandoc $$(notdir $$<) -f latex -t rst --metadata=title:$(1) -s --extract-media=$$(ROOTDIR)/$$(dir $$@) > $$(ROOTDIR)/$$@
 endef
 
 $(foreach f, $(texsource), $(eval $(call pandoc_rst_template,$(f))))

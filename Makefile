@@ -9,7 +9,7 @@ export TEXINPUTS=.:ivoatex:
 SRCDIR := src
 SPHINXDIR :=sphinxSource/idoc
 BUILDDIR :=build
-PANDCUST :=pandocCustomization
+PANDCUST :=$(ROOTDIR)/pandocCustomization
 
 TEXDIRS=$(foreach t,$(texsource), $(SRCDIR)/$(t))
 SPDIRS=$(foreach t,$(texsource) $(htmlsource), $(SPHINXDIR)/$(t))
@@ -31,11 +31,11 @@ $(SPDIRS):
 # this is probably gnu make 4.x specific - does not work on native MacOS (make 3.x)
 # pandoc does poor job of getting relative links correct
 
-
+# note that it is necessary to stop line wrapping in the pandoc translation - not sure why this is not the default for rst conversion
 define pandoc_rst_template =
 $$(SPHINXDIR)/$(1)/$(1).rst : $$(SRCDIR)/$(1)/$(1).tex
 	make -C $$(dir $$<)
-	cd $$(dir $$<);pandoc $$(notdir $$<) -f latex -t rst -N --metadata=status:WD -s --template=$$(ROOTDIR)/$$(PANDCUST)/default.rst --extract-media=$$(ROOTDIR)/$$(dir $$@) > $$(ROOTDIR)/$$@
+	cd $$(dir $$<);pandoc $$(notdir $$<) -f latex -t rst  --metadata=status:WD -s --wrap=none --lua-filter=$$(PANDCUST)/number-sections.lua --template=$$(PANDCUST)/default.rst --extract-media=$$(ROOTDIR)/$$(dir $$@) > $$(ROOTDIR)/$$@
 endef
 
 $(foreach f, $(texsource), $(eval $(call pandoc_rst_template,$(f))))

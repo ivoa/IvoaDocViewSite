@@ -1,0 +1,45 @@
+
+name: Run Sphinx
+
+env:
+  doc_name   : VodmlTools
+  branch_name: ${{ github.head_ref || github.ref_name }}
+  tag_preview: note-auto-pdf-preview
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout the repository
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - name: Setup dependencies
+      run: |
+        sudo apt update
+        sudo apt install texlive-latex-base texlive-latex-recommended \
+                         texlive-latex-extra texlive-fonts-recommended \
+                         librsvg2-bin latexmk \
+                         pdftk xsltproc latexmk cm-super
+        sudo apt install pandoc plantuml
+    - uses: actions/setup-python@v5
+      with:
+        python-version: 3.x
+        cache: 'pip'
+    - run: pip install -r requirements.txt
+    - name: Build Site
+      run: make
+
+
+
+

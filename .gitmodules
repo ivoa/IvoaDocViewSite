@@ -13,9 +13,6 @@
 [submodule "src/VOTable"]
 	path = src/VOTable
 	url = https://github.com/pahjbo/VOTable
-[submodule "src/UCDList"]
-	path = src/UCDList
-	url = https://github.com/ivoa-std/UCDList
 [submodule "src/ADQL"]
 	path = src/ADQL
 	url = https://github.com/ivoa-std/ADQL

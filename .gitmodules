@@ -12,7 +12,7 @@
 	url = https://github.com/ivoa-std/ConeSearch
 [submodule "src/VOTable"]
 	path = src/VOTable
-	url = https://github.com/ivoa-std/VOTable
+	url = https://github.com/pahjbo/VOTable
 [submodule "src/UCDList"]
 	path = src/UCDList
 	url = https://github.com/ivoa-std/UCDList
@@ -24,7 +24,7 @@
 	url = https://github.com/ivoa-std/TAP
 [submodule "src/RegTAP"]
 	path = src/RegTAP
-	url = https://github.com/ivoa-std/RegTAP
+	url = https://github.com/pahjbo/RegTAP
 [submodule "src/UWS"]
 	path = src/UWS
 	url = https://github.com/ivoa-std/UWS

@@ -31,3 +31,6 @@
 [submodule "src/IVOAArchitecture"]
 	path = src/IVOAArchitecture
 	url = https://github.com/pahjbo/architecture
+[submodule "src/UCDlist"]
+	path = src/UCDlist
+	url = https://github.com/ivoa-std/UCDList

@@ -37,6 +37,7 @@ html_theme_options = dict(
     logo_height = 40,
     logo_width = 71,
     logo_url = "/",
+    github_url = "https://github.com/ivoa/IvoaDocViewSite/blob/main/sphinxSource/",
     footer_links= "IVOA Home|https://www.ivoa.net, Official Document Repository|https://www.ivoa.net/documents/, XML Schema|https://www.ivoa.net/xml/, Vocabularies|https://www.ivoa.net/rdf/"
 )
 html_static_path = ['_static']

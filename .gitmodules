@@ -33,4 +33,4 @@
 	url = https://github.com/ivoa-std/ivoatex
 [submodule "src/IVOAArchitecture"]
 	path = src/IVOAArchitecture
-	url = https://github.com/ivoa-std/architecture
+	url = https://github.com/pahjbo/architecture

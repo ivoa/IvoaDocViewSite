@@ -14,6 +14,14 @@ content of the standards documents - however, there will always be a conflict
 between the designed for academic paper delivery style and a more on-line 
 documentation approach.
 
+Current Status
+--------------
+
+This is still in the proof of concept stage, so there are many faults. 
+
+
+
+
 Site layout
 -----------
 
@@ -34,6 +42,9 @@ The desired transformations to make the documents more "readable" online are
 * redo citation links to other standards as internal URLs
 
 
+## Developing This site
+
+https://stackoverflow.com/questions/58457140/dependencies-between-workflows-on-github-actions/64733705#64733705
 
 ## Pandoc customization
 

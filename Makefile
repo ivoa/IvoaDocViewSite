@@ -48,10 +48,16 @@ endef
 
 $(foreach f, $(htmlsource), $(eval $(call pandoc_html_template,$(f))))
 
-.PHONY: clean dolink_ivoatex restore_ivoatex
+.PHONY: clean dolink_ivoatex restore_ivoatex clean_deps
 
 clean:
 	rm -rf $(SPHINXDIR)/*
+
+clean_deps:
+	for i in $(texsource); do \
+  	make -C $(SRCDIR)/$$i clean;\
+  	done
+
 
 dolink_ivoatex:
 	for i in $(texsource); do \

@@ -36,7 +36,7 @@ define pandoc_rst_template =
 $$(SPHINXDIR)/$(1)/$(1).rst : $$(SRCDIR)/$(1)/$(1).tex
 	make -C $$(dir $$<)
 	cd $$(dir $$<);pandoc $$(notdir $$<) -f latex+raw_tex -t rst\
-	  --metadata=status:$$(shell make -C $$(dir $$<) -f $$(ROOTDIR)/util.mak -f Makefile docIdentity)\
+	  --metadata=status:$$(shell make -s -C $$(dir $$<) -f $$(ROOTDIR)/util.mak -f Makefile docIdentity)\
 	   -s --wrap=none --lua-filter=$$(PANDCUST)/number-sections.lua --template=$$(PANDCUST)/default.rst\
 	     > $$(ROOTDIR)/$$@
 	make -C $$(dir $$<) -f $$(ROOTDIR)/util.mak -f Makefile copyRequiredFiles TODIR=$$(ROOTDIR)/$$(dir $$@)

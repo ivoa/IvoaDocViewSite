@@ -5,7 +5,9 @@ This project is aiming to create a more modern and integrated
 view on the IVOA standard documents. It aims to do this by 
 transforming the source of the documents using [pandoc](https://pandoc.org/) 
 and then putting them into a structure delivered using 
-[sphinx](https://www.sphinx-doc.org/). 
+[sphinx](https://www.sphinx-doc.org/). Once complete, it is hoped that this is a
+more accessible resource for developers to use to understand how to 
+write code compliant with IVOA standards.
 
 It is specifically not intended
 to change or replace the standard IVOA document publishing system. Although
@@ -17,8 +19,17 @@ documentation approach.
 Current Status
 --------------
 
-This is still in the proof of concept stage, so there are many faults. 
+This is still in the proof of concept stage, so there are many faults. Mostly because
+not all the transformations below have been implemented yet.
 
+The result of running the process is available in [GitHub Pages](https://ivoa.github.io/IvoaDocViewSite)
+
+### Transformations
+
+The desired transformations to make the documents more "readable" online are
+* remove some of the front matter from each document
+* have a single bibliography
+* redo citation links to other standards as internal URLs
 
 
 
@@ -34,15 +45,13 @@ documentation sits.
 
 
 
-### Transformations 
-
-The desired transformations to make the documents more "readable" online are
-* remove some of the front matter from each document 
-* have a single bibliography
-* redo citation links to other standards as internal URLs
-
-
 ## Developing This site
+
+Git submodules are a little difficult to manage - especially when trying to make sure that they point to the latest git commit hash for the module
+
+```terminaloutput
+git submodule update --recursive --remote
+```
 
 https://stackoverflow.com/questions/58457140/dependencies-between-workflows-on-github-actions/64733705#64733705
 

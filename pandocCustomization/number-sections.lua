@@ -53,39 +53,48 @@ function Meta(meta)
     end
 end
 
+function RawBlock(el)
+ --   pandoc.log.info("raw "..el.text)
+    -- Check if it contains with "appendix" (case-insensitive)
+    if el.text:lower():match("appendix") then
+        return pandoc.Header(1, "Appendices", {class='unnumbered'})
+    end
+end
+
 -- This function runs on every Header element in the document
 function Header(el)
-  -- Check if the header has the 'unnumbered' class
-  if el.classes:includes("unnumbered") then
+ --   pandoc.log.info("header ".. pandoc.utils.stringify(el.content) ..' ' .. tostring(in_appendix_mode))
+    local level = el.level
+    -- NEW: Check for Appendix trigger (before incrementing)
+    -- If we're not already in appendix mode and this is an H1
+    if not in_appendix_mode and level == 1 then
+        -- Convert header content to a plain string
+        local header_text = pandoc.utils.stringify(el.content)
+        -- Check if it starts with "appendix" (case-insensitive)
+        if header_text:lower():match("^appendices") then -- should have been created by the RawBlock filter
+            in_appendix_mode = true
+            -- Reset all counters to start appendix numbering (e.g., A, B, C...)
+            for i = 1, 6 do
+                counters[i] = 0
+            end
+            return el      -- keep it!  return {} -- Remove the appendices header again
+        end
+    end
+
+  -- Check if the header has the 'unnumbered' class - force numbering in appendix mode!
+  if el.classes:includes("unnumbered") and not in_appendix_mode  then
     return el -- Return the element unmodified
   end
-
-  local level = el.level
-
   -- Check if the header's level is within the specified depth
   if level > max_depth then
     return el -- Return the element unmodified
   end
 
-  -- NEW: Check for Appendix trigger (before incrementing)
-  -- If we're not already in appendix mode and this is an H1
-  if not in_appendix_mode and level == 1 then
-    -- Convert header content to a plain string
-    local header_text = pandoc.utils.stringify(el.content)
-    -- Check if it starts with "appendix" (case-insensitive)
-    if header_text:lower():match("^appendix") then -- FIXME this is not the condition to go into appendix mode
-      in_appendix_mode = true
-      -- Reset all counters to start appendix numbering (e.g., A, B, C...)
-      for i = 1, 6 do
-        counters[i] = 0
-      end
-    end
-  end
 
   -- 3. Increment the counter for the current header level
   counters[level] = counters[level] + 1
 
-  -- 4. Reset all counters for deeper levels
+  --  Reset all counters for deeper levels
   for i = level + 1, 6 do
     counters[i] = 0
   end
@@ -120,8 +129,9 @@ function Header(el)
 end
 
 -- Tell Pandoc which filters to run.
--- We run Meta first to get the max_depth, then Header.
+-- We run Meta first to get the max_depth, RawBlock to mark start of appendices then Header.
 return {
   {Meta = Meta},
+  {RawBlock = RawBlock},
   {Header = Header}
 }

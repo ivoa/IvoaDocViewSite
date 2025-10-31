@@ -35,15 +35,16 @@ $(SPDIRS):
 define pandoc_rst_template =
 $$(SPHINXDIR)/$(1)/$(1).rst : $$(SRCDIR)/$(1)/$(1).tex
 	make -C $$(dir $$<)
-	cd $$(dir $$<);pandoc $$(notdir $$<) -f latex -t rst\
+	cd $$(dir $$<);pandoc $$(notdir $$<) -f latex+raw_tex -t rst\
 	  --metadata=status:$$(shell make -C $$(dir $$<) -f $$(ROOTDIR)/util.mak -f Makefile docIdentity)\
 	   -s --wrap=none --lua-filter=$$(PANDCUST)/number-sections.lua --template=$$(PANDCUST)/default.rst\
-	    --extract-media=$$(ROOTDIR)/$$(dir $$@) > $$(ROOTDIR)/$$@
+	     > $$(ROOTDIR)/$$@
+	make -C $$(dir $$<) -f $$(ROOTDIR)/util.mak -f Makefile copyRequiredFiles TODIR=$$(ROOTDIR)/$$(dir $$@)
 endef
 
 $(foreach f, $(texsource), $(eval $(call pandoc_rst_template,$(f))))
 
-
+#not working
 define pandoc_html_template =
 $$(PREPDIR)/$(1)/$(1).md : $$(SRCDIR)/$(1)/$(1).html
 	cd $$(dir $$<);pandoc $$(notdir $$<) -f html -t rst -o $$(ROOTDIR)/$$@ --extract-media=$$(ROOTDIR)/$$(dir $$@)
@@ -61,8 +62,6 @@ clean_deps:
   	make -C $(SRCDIR)/$$i clean;\
   	done
 
-# note to update the commit that the submodules point at do
-# git submodule update --recursive --remote
 
 # these manipulations of ivoatex subdirs are done because some projects do not get their subdirs for some reason
 # also pandoc only looks in the cwd for tex modules
@@ -74,3 +73,6 @@ restore_ivoatex:
 	for i in $(texsource); do \
      (rm -rf $(SRCDIR)/$$i/ivoatex; cd $(SRCDIR)/$$i; rm -f ivoa.cls; git restore ivoatex;)\
      done
+
+
+

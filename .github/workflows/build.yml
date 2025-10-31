@@ -30,8 +30,8 @@ jobs:
         sudo apt install texlive-latex-base texlive-latex-recommended \
                          texlive-latex-extra texlive-fonts-recommended \
                          librsvg2-bin latexmk \
-                         pdftk xsltproc latexmk cm-super
-        sudo apt install pandoc plantuml
+                         pdftk xsltproc latexmk cm-super pdf2svg \
+                         pandoc plantuml
     - uses: actions/setup-python@v5
       with:
         python-version: 3.x

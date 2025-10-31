@@ -48,7 +48,12 @@ jobs:
       run: |
         make
         make restore_ivoatex
-      
+     # https://docs.github.com/en/actions/tutorials/store-and-share-data
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+          name: ivoa_site_build
+          path: build/
 
 
 

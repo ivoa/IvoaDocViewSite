@@ -45,7 +45,10 @@ jobs:
         distribution: 'temurin'
 
     - name: Build Site
-      run: make
+      run: |
+        make
+        make restore_ivoatex
+      
 
 
 

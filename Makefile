@@ -9,7 +9,7 @@ export TEXINPUTS=.:ivoatex:
 SRCDIR := src
 SPHINXDIR :=sphinxSource/idoc
 BUILDDIR :=build
-PANDCUST :=$(ROOTDIR)/pandocCustomization
+PANDCUST :=../../pandocCustomization
 
 TEXDIRS=$(foreach t,$(texsource), $(SRCDIR)/$(t))
 SPDIRS=$(foreach t,$(texsource) $(htmlsource), $(SPHINXDIR)/$(t))
@@ -58,9 +58,8 @@ clean:
 	rm -rf $(SPHINXDIR)/*
 
 clean_deps:
-	for i in $(texsource); do \
-  	make -C $(SRCDIR)/$$i clean;\
-  	done
+	rm -rf src/*
+	git submodule update --init
 
 
 # these manipulations of ivoatex subdirs are done because some projects do not get their subdirs for some reason

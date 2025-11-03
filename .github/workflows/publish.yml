@@ -43,7 +43,6 @@ jobs:
         with:
           name: ivoa_site_build
           run-id: ${{ github.event.workflow_run.id }}
-          github-token: ${secrets.GITHUB_TOKEN}
           path: build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

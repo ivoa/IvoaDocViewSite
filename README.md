@@ -55,8 +55,6 @@ Git submodules are a little difficult to manage - especially when trying to make
 git submodule update --recursive --remote
 ```
 
-https://stackoverflow.com/questions/58457140/dependencies-between-workflows-on-github-actions/64733705#64733705
-
 ## Pandoc customization
 
 In general there is customization required for two reasons

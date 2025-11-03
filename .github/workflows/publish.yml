@@ -17,7 +17,8 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  actions: read
+  actions: write
+
 
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
@@ -43,6 +44,8 @@ jobs:
         with:
           run-id: ${{ github.event.workflow_run.id }}
           path: build
+      - name: try the download with gh
+        run: gh run download -n ivoa_site_build -D build/ ${{ github.event.workflow_run.id }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -47,7 +47,7 @@ jobs:
       - name: try the download with gh
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh run download -n ivoa_site_build -D build/ ${{ github.event.workflow_run.id }}
+        run: gh run download -R ivoa/IvoaDocViewSite -n ivoa_site_build -D build/ ${{ github.event.workflow_run.id }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

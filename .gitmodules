@@ -27,7 +27,7 @@
 	url = https://github.com/ivoa-std/UWS
 [submodule "src/ivoatex"]
 	path = src/ivoatex
-	url = https://github.com/ivoa-std/ivoatex
+	url = git@github.com:pahjbo/ivoatex.git
 [submodule "src/IVOAArchitecture"]
 	path = src/IVOAArchitecture
 	url = https://github.com/pahjbo/architecture

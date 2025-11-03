@@ -63,6 +63,7 @@ clean_deps:
 
 
 # these manipulations of ivoatex subdirs are done because some projects do not get their subdirs for some reason
+# also want to use single customized ivoatex
 # also pandoc only looks in the cwd for tex modules
 dolink_ivoatex:
 	for i in $(texsource); do \

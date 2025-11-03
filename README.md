@@ -22,6 +22,8 @@ Current Status
 This is still in the proof of concept stage, so there are many faults. Mostly because
 not all the transformations below have been implemented yet.
 
+[![Run Sphinx](https://github.com/ivoa/IvoaDocViewSite/actions/workflows/build.yml/badge.svg)](https://github.com/ivoa/IvoaDocViewSite/actions/workflows/build.yml)
+
 The result of running the process is available in [GitHub Pages](https://ivoa.github.io/IvoaDocViewSite)
 
 ### Transformations
@@ -29,7 +31,7 @@ The result of running the process is available in [GitHub Pages](https://ivoa.gi
 The desired transformations to make the documents more "readable" online are
 * remove some of the front matter from each document
 * have a single bibliography
-* redo citation links to other standards as internal URLs
+* redo citation links to other standards as internal URLs - it can take 4 clicks to navigate from one document to another in the standard publishing
 
 
 

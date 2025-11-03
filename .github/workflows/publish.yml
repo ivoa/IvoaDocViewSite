@@ -35,16 +35,20 @@ jobs:
     steps:
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: download site from build run
         uses: actions/download-artifact@v5
         with:
           name: ivoa_site_build
           run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${secrets.GITHUB_TOKEN}
+          path: build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload result of
-          path: 'build'
+          path: 'build/html'
+      # perhaps this can be done direct from uploaded artifact....
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

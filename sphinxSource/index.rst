@@ -20,4 +20,8 @@ This site offers an alternative integrated view on IVOA documentation
 
    idoc/*/*
 
+Bibliography
+------------
 
+.. bibliography::
+   :all:

@@ -1,4 +1,5 @@
 .SUFFIXES: .tex .md
+PYTHON?=python3
 texsource := $(shell cd src;for f in */ivoatex; do echo "$${f%/ivoatex}" ; done)
 htmlsource := UWS
 
@@ -35,11 +36,12 @@ $(SPDIRS):
 define pandoc_rst_template =
 $$(SPHINXDIR)/$(1)/$(1).rst : $$(SRCDIR)/$(1)/$(1).tex
 	make -C $$(dir $$<)
+	make -C $$(dir $$<) -f $$(ROOTDIR)/util.mk -f Makefile docMeta.yaml
 	cd $$(dir $$<);pandoc $$(notdir $$<) -f latex+raw_tex -t rst\
-	  --metadata=status:$$(shell make -s -C $$(dir $$<) -f $$(ROOTDIR)/util.mak -f Makefile docIdentity)\
+	  --metadata-file=docMeta.yaml \
 	   -s --wrap=none --lua-filter=$$(PANDCUST)/number-sections.lua --template=$$(PANDCUST)/default.rst\
 	     > $$(ROOTDIR)/$$@
-	make -C $$(dir $$<) -f $$(ROOTDIR)/util.mak -f Makefile copyRequiredFiles TODIR=$$(ROOTDIR)/$$(dir $$@)
+	make -C $$(dir $$<) -f $$(ROOTDIR)/util.mk -f Makefile copyRequiredFiles TODIR=$$(ROOTDIR)/$$(dir $$@)
 endef
 
 $(foreach f, $(texsource), $(eval $(call pandoc_rst_template,$(f))))
@@ -55,11 +57,13 @@ $(foreach f, $(htmlsource), $(eval $(call pandoc_html_template,$(f))))
 .PHONY: clean dolink_ivoatex restore_ivoatex clean_deps
 
 clean:
-	rm -rf $(SPHINXDIR)/*
+	rm -rf $(SPHINXDIR)/* build/*
 
+# see https://git-scm.com/book/en/v2/Git-Tools-Submodules make sure that ivotex module is up to date with any changes on the branch
 clean_deps:
 	rm -rf src/*
 	git submodule update --init
+	git submodule update --recursive --remote src/ivoatex
 
 
 # these manipulations of ivoatex subdirs are done because some projects do not get their subdirs for some reason
@@ -67,7 +71,7 @@ clean_deps:
 # also pandoc only looks in the cwd for tex modules
 dolink_ivoatex:
 	for i in $(texsource); do \
-     (rm -rf $(SRCDIR)/$$i/ivoatex; cd $(SRCDIR)/$$i; ln -s ../ivoatex; ln -f -s ../ivoatex/ivoa.cls)\
+     (rm -rf $(SRCDIR)/$$i/ivoatex; cd $(SRCDIR)/$$i; ln -s ../ivoatex; ln -f -s ../ivoatex/ivoa.cls; rm -f docMeta.yaml)\
      done
 restore_ivoatex:
 	for i in $(texsource); do \

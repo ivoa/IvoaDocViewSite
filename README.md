@@ -2,7 +2,8 @@ IVOA Documents View Site
 =========================
 
 This project is aiming to create a more modern and integrated
-view on the IVOA standard documents. It aims to do this by 
+view on the IVOA standard documents, that can compfortably be viewed on many different device sizes.
+It aims to do this by 
 transforming the source of the documents using [pandoc](https://pandoc.org/) 
 and then putting them into a structure delivered using 
 [sphinx](https://www.sphinx-doc.org/). Once complete, it is hoped that this is a
@@ -31,7 +32,7 @@ The result of running the process is available in [GitHub Pages](https://ivoa.gi
 The desired transformations to make the documents more "readable" online are
 * remove some of the front matter from each document
 * have a single bibliography
-* redo citation links to other standards as internal URLs - it can take 4 clicks to navigate from one document to another in the standard publishing
+* transform citation links to other standards as internal URLs - it can take 4 clicks to navigate from  a citation one document to the content of another in the standard publishing
 
 
 
@@ -46,29 +47,49 @@ into the [sphinxSource/idoc](./sphinxSource/idoc) directory tree. The other cont
 documentation sits.
 
 
-
 ## Developing This site
 
-Git submodules are a little difficult to manage - especially when trying to make sure that they point to the latest git commit hash for the module
+```terminaloutput
+make
+```Should build the site which is then viewable at [./build/html/index.html](./build/html/index.html)
+
+To ensure that you are building from a clean initial state
+
+```terminaloutput
+make clean doSphinx
+```
+
+> [!NOTE]
+> If developing this site on MacOS you should note that the "standard" make is still v3.x - the makefiles here require v4.x (they will silently just not do things) and so it is necessary to install a newer version via for instance homebrew (and note it is still not put on the default PATH)
+
+During the build the ivoadoc submodules are manipulated in a way that means that `git commit` will not work - to restore the ivoadoc submodules run
+
+```terminaloutput
+make restore_ivoatex
+```
+
+Should allow git commands to work normally.
+
+Git submodules that exist in [.src](./src) can be difficult to manage - especially when trying to make sure that they point to the latest git commit hash for the module - this should do that.
 
 ```terminaloutput
 git submodule update --recursive --remote
 ```
 
-## Pandoc customization
+### GitHub CI
+
+GitHub actions are set up to build and publish the site automatically. The build will happen on PRs and pushes to the main branch - it creates an artifact containing the site for each action invocation. The publishing to github pages will automatically occur on a successful build on the main branch.
+
+### Pandoc customization
 
 In general there is customization required for two reasons
 
 * pandoc's default translation from latex to restructured text does not quite work as required
 * to perform one of the desired transformations
 
-this is done via https://pandoc.org/lua-filters.html, with some examples in https://github.com/pandoc-ext
+Customisation is done via https://pandoc.org/lua-filters.html, in the [pandocCustomization](./pandocCustomization) with some examples in https://github.com/pandoc-ext
 
-## Sphinx Notes
+### Sphinx Notes
 
-* https://github.com/sphinx-doc/sphinx/issues/6614
 
-#### fixes
 
-* The title is being numbered - this seems wrong... https://github.com/sphinx-doc/sphinx/issues/4628 - however, https://github.com/nowox/sphinx-fix-sectnum does not work
-  * another solution is to do this in pandoc...

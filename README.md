@@ -2,7 +2,7 @@ IVOA Documents View Site
 =========================
 
 This project is aiming to create a more modern and integrated
-view on the IVOA standard documents, that can compfortably be viewed on many different device sizes.
+view on the IVOA standard documents, that can comfortably be viewed on many different device sizes.
 It aims to do this by 
 transforming the source of the documents using [pandoc](https://pandoc.org/) 
 and then putting them into a structure delivered using 
@@ -51,7 +51,9 @@ documentation sits.
 
 ```terminaloutput
 make
-```Should build the site which is then viewable at [./build/html/index.html](./build/html/index.html)
+```
+
+Should build the site which is then viewable at [./build/html/index.html](./build/html/index.html)
 
 To ensure that you are building from a clean initial state
 
@@ -70,7 +72,7 @@ make restore_ivoatex
 
 Should allow git commands to work normally.
 
-Git submodules that exist in [.src](./src) can be difficult to manage - especially when trying to make sure that they point to the latest git commit hash for the module - this should do that.
+Git submodules that exist in [src](./src) can be difficult to manage - especially when trying to make sure that they point to the latest git commit hash for the module - this should do that.
 
 ```terminaloutput
 git submodule update --recursive --remote
@@ -87,7 +89,7 @@ In general there is customization required for two reasons
 * pandoc's default translation from latex to restructured text does not quite work as required
 * to perform one of the desired transformations
 
-Customisation is done via https://pandoc.org/lua-filters.html, in the [pandocCustomization](./pandocCustomization) with some examples in https://github.com/pandoc-ext
+Customisation is done via https://pandoc.org/lua-filters.html, in the [pandocCustomization](./pandocCustomization) directory with some examples in https://github.com/pandoc-ext
 
 ### Sphinx Notes
 

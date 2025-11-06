@@ -10,6 +10,8 @@ docMeta.yaml: Makefile
 	echo "DOCTYPE": $(DOCTYPE)>> $@
 	echo "DOCDATE": $(DOCDATE)>> $@
 	echo "status": $(DOCNAME) $(DOCVERSION) $(DOCTYPE) $(DOCDATE) >> $@
+	echo "BIBKEY": $(shell awk -F: '/^$(DOCNAME):/{print $$2}' $(PANDCUST)/latest_versions_map.yaml ) >> $@
+
 
 
 # this is trying to be specific

@@ -1,7 +1,11 @@
 $if(titleblock)$
-=======
+====================
 $title$
-=======
+====================
+
+$if(BIBKEY)$
+Official bibliographic entry for published version :cite:p:`$^$$BIBKEY$`.
+$endif$
 
 $if(date)$
 :Date: $^$$date$

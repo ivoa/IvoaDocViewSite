@@ -47,7 +47,7 @@ html_css_files = ["ivoa.css"]
 
 # bibliography https://sphinxcontrib-bibtex.readthedocs.io/en/latest/index.html
 extensions.append("sphinxcontrib.bibtex")
-bibtex_bibfiles = ["../src/ivoatex/docrepo.bib"]
+bibtex_bibfiles = ["../src/ivoatex/docrepo.bib"] # TODO add the individual bib files (though need to worry about duplicates and labels below....)
 bibtex_default_style = 'IvoaStyle'
 
 import pybtex.plugin
@@ -59,7 +59,7 @@ class IvoaLabelStyle(AlphaLabelStyle):
     """
     make the label look like document shortname and version
     """
-    def format_label(self, entry):
+    def format_label(self, entry): # FIXME need to worry about bib entries that do not have these fields
         return entry.fields["ivoa_docname"] + entry.fields["version"]
 
 class IvoaSorting(BaseSortingStyle):

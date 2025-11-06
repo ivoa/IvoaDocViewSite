@@ -53,8 +53,7 @@ documentation sits.
 make
 ```
 
-Should build the site which is then viewable at [./build/html/index.html](./build/html/index.html)
-
+Should build the site which is then viewable at `./build/html/index.html`.
 To ensure that you are building from a clean initial state
 
 ```terminaloutput
@@ -89,8 +88,10 @@ In general there is customization required for two reasons
 * pandoc's default translation from latex to restructured text does not quite work as required
 * to perform one of the desired transformations
 
-Customisation is done via https://pandoc.org/lua-filters.html, in the [pandocCustomization](./pandocCustomization) directory with some examples in https://github.com/pandoc-ext
+Customisation is done via https://pandoc.org/lua-filters.html, in the [pandocCustomization](./pandocCustomization) directory with some examples in https://github.com/pandoc-ext and lua language guide
+https://www.lua.org/pil/contents.html
 
+https://www.gammon.com.au/lpeg
 ### Sphinx Notes
 
 

@@ -21,7 +21,7 @@ ALLTEX=$(foreach t,$(texsource), $(SRCDIR)/$(t)/$(t).tex )
 # do not include the html sources for now...
 ALLSP=$(foreach t,$(texsource), $(SPHINXDIR)/$(t)/$(t).rst )
 
-doSphinx: subdirs dolink_ivoatex $(ALLSP)
+doSphinx: subdirs dolink_ivoatex $(ALLSP) pandocCustomization/latest_versions_map.yaml
 	sphinx-build -M html ./sphinxSource $(BUILDDIR)
 
 
@@ -34,12 +34,13 @@ $(SPDIRS):
 
 # note that it is necessary to stop line wrapping in the pandoc translation - not sure why this is not the default for rst conversion
 define pandoc_rst_template =
-$$(SPHINXDIR)/$(1)/$(1).rst : $$(SRCDIR)/$(1)/$(1).tex
+$$(SPHINXDIR)/$(1)/$(1).rst : $$(SRCDIR)/$(1)/$(1).tex pandocCustomization/latest_versions_map.yaml
 	make -C $$(dir $$<)
-	make -C $$(dir $$<) -f $$(ROOTDIR)/util.mk -f Makefile docMeta.yaml
+	make -C $$(dir $$<) -f Makefile -f $$(ROOTDIR)/util.mk  docMeta.yaml PANDCUST=$$(PANDCUST)
 	cd $$(dir $$<);pandoc $$(notdir $$<) -f latex+raw_tex -t rst\
 	  --metadata-file=docMeta.yaml \
-	   -s --wrap=none --lua-filter=$$(PANDCUST)/number-sections.lua --template=$$(PANDCUST)/default.rst\
+	   -s --wrap=none  -M bibmap=$$(PANDCUST)/latest_versions_map.yaml --lua-filter=$$(PANDCUST)/relink-ivoa-citations.lua \
+	   --lua-filter=$$(PANDCUST)/number-sections.lua --template=$$(PANDCUST)/default.rst\
 	     > $$(ROOTDIR)/$$@
 	make -C $$(dir $$<) -f $$(ROOTDIR)/util.mk -f Makefile copyRequiredFiles TODIR=$$(ROOTDIR)/$$(dir $$@)
 endef
@@ -53,6 +54,10 @@ $$(PREPDIR)/$(1)/$(1).md : $$(SRCDIR)/$(1)/$(1).html
 endef
 
 $(foreach f, $(htmlsource), $(eval $(call pandoc_html_template,$(f))))
+
+
+pandocCustomization/latest_versions_map.yaml: src/ivoatex/docrepo.bib latest_versions.py
+	$(PYTHON) latest_versions.py
 
 .PHONY: clean dolink_ivoatex restore_ivoatex clean_deps
 

@@ -31,7 +31,7 @@ exclude_patterns = []
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 # https://sphinx-wagtail-theme.readthedocs.io/en/latest/index.html
 extensions.append("sphinx_wagtail_theme")
-#html_theme = 'sphinx_wagtail_theme'
+html_theme = 'sphinx_wagtail_theme'
 html_theme_options = dict(
     project_name = "IVOA Documentation View",
     logo = "img/ivoa_logo71x40.jpg",

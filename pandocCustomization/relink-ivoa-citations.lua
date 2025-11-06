@@ -9,7 +9,7 @@ local docname
 function Meta(m)
 --  local mapfilepath = PANDOC_WRITER_OPTIONS.variables["bibmap"] -- this returns a Doc surprisingly... have to do via meta
     local mapfilepath = m["bibmap"]
-    docname = m["DOCNAME"]
+    docname = pandoc.utils.stringify(m["DOCNAME"])
     f = io.open(mapfilepath,"r")
     if f then
         for line in f:lines() do
@@ -36,7 +36,7 @@ function Cite(c)
             else
                 outstring = v.text:gsub("\\cite([pt]){([^}]+)}",":cite:%1:`%2`")
             end
-            pandoc.log.info("raw ".. v.text .. " -> " .. outstring)
+--            pandoc.log.info("raw ".. v.text .. " -> " .. outstring)
         end
     end
     return {pandoc.RawInline("rst",outstring)}

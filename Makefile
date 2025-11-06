@@ -39,7 +39,9 @@ $$(SPHINXDIR)/$(1)/$(1).rst : $$(SRCDIR)/$(1)/$(1).tex pandocCustomization/lates
 	make -C $$(dir $$<) -f Makefile -f $$(ROOTDIR)/util.mk  docMeta.yaml PANDCUST=$$(PANDCUST)
 	cd $$(dir $$<);pandoc $$(notdir $$<) -f latex+raw_tex -t rst\
 	  --metadata-file=docMeta.yaml \
-	   -s --wrap=none  -M bibmap=$$(PANDCUST)/latest_versions_map.yaml --lua-filter=$$(PANDCUST)/relink-ivoa-citations.lua \
+	   -s --wrap=none  -M bibmap=$$(PANDCUST)/latest_versions_map.yaml \
+	   --lua-filter=$$(PANDCUST)/relink-ivoa-citations.lua \
+	   --lua-filter=$$(PANDCUST)/fix_internal_refs.lua \
 	   --lua-filter=$$(PANDCUST)/number-sections.lua --template=$$(PANDCUST)/default.rst\
 	     > $$(ROOTDIR)/$$@
 	make -C $$(dir $$<) -f $$(ROOTDIR)/util.mk -f Makefile copyRequiredFiles TODIR=$$(ROOTDIR)/$$(dir $$@)

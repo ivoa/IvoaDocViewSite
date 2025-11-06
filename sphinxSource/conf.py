@@ -17,6 +17,7 @@ release = '0.1'
 html_title = "IVOA Docs"
 html_favicon = "https://raw.githubusercontent.com/ivoa/ivoa-web/refs/heads/main/static/favicon/favicon.ico"
 html_last_updated_fmt = "%a, %d %b %Y %H:%M:%S"
+numfig = True
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -30,7 +31,7 @@ exclude_patterns = []
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 # https://sphinx-wagtail-theme.readthedocs.io/en/latest/index.html
 extensions.append("sphinx_wagtail_theme")
-html_theme = 'sphinx_wagtail_theme'
+#html_theme = 'sphinx_wagtail_theme'
 html_theme_options = dict(
     project_name = "IVOA Documentation View",
     logo = "img/ivoa_logo71x40.jpg",

@@ -16,6 +16,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    # Prebuilt image should contain:
+    # pandoc, texlive packages, plantuml + Java, python deps (or at least python3/pip)
+    container:
+      image: ghcr.io/ivoa/ivoadocviewsite-sphinx-build:latest
 
     steps:
 
@@ -23,26 +27,6 @@ jobs:
       uses: actions/checkout@v4
       with:
         submodules: true
-
-    - name: Setup dependencies
-      run: |
-        sudo apt update
-        sudo apt install texlive-latex-base texlive-latex-recommended \
-                         texlive-latex-extra texlive-fonts-recommended \
-                         librsvg2-bin latexmk inkscape \
-                         pdftk xsltproc latexmk cm-super pdf2svg \
-                         pandoc plantuml
-    - uses: actions/setup-python@v5
-      with:
-        python-version: 3.x
-        cache: 'pip'
-    - run: pip install -r requirements.txt
-
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
 
     - name: Build Site
       run: |

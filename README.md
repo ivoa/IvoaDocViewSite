@@ -77,6 +77,18 @@ Git submodules that exist in [src](./src) can be difficult to manage - especiall
 git submodule update --recursive --remote
 ```
 
+### Adding a new standard document
+
+Adding a new standard document require the following steps
+1. add the document as a git submodule in the [src](./src) directory
+    ```
+   git submodule add <url> src/<name>```
+    ```
+   note the name should be the same as the name of the document in the standard publishing system - this is important for the transformations to work correctly.
+
+2. if the standard repository does not follow the ivoatex pattern, then it might be necessary to add a special case in  [sphinxSource/idoc/Makefile](./sphinxSource/idoc/Makefile) to transform the document into restructured text and put it in the right place in the site structure
+2. at the moment [sphinxSource/idoc/index.rst](./sphinxSource/idoc/index.rst) should pick up any sources automatically as there is no real structure to the site - in future it will be necessary to manually add links.
+
 ### GitHub CI
 
 GitHub actions are set up to build and publish the site automatically. The build will happen on PRs and pushes to the main branch - it creates an artifact containing the site for each action invocation. The publishing to github pages will automatically occur on a successful build on the main branch.

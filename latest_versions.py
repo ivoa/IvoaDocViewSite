@@ -14,7 +14,7 @@ def main():
             fields = entry.fields_dict
             if "ids" in fields.keys():
                 if fields["ivoa_docname"].value in docs:
-                    f.write(f"{fields["ivoa_docname"].value}: \"{bibcode}\"\n")
+                    f.write(f"{fields['ivoa_docname'].value}: \"{bibcode}\"\n")
 
 if __name__=="__main__":
     main()

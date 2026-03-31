@@ -14,7 +14,7 @@ project = 'IVOA Documentation View'
 author = 'Paul Harrison'
 html_show_copyright = False
 release = '0.1'
-html_title = "IVOA Docs"
+html_title = "IVOA DocView"
 html_favicon = "https://raw.githubusercontent.com/ivoa/ivoa-web/refs/heads/main/static/favicon/favicon.ico"
 html_last_updated_fmt = "%a, %d %b %Y %H:%M:%S"
 numfig = True
@@ -29,19 +29,27 @@ exclude_patterns = []
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
-# https://sphinx-wagtail-theme.readthedocs.io/en/latest/index.html
-extensions.append("sphinx_wagtail_theme")
-html_theme = 'sphinx_wagtail_theme'
-html_theme_options = dict(
-    project_name = "IVOA Documentation View",
-    logo = "img/ivoa_logo71x40.jpg",
-    logo_alt = "IVOA",
-    logo_height = 40,
-    logo_width = 71,
-    logo_url = "/",
-    github_url = "https://github.com/ivoa/IvoaDocViewSite/blob/main/sphinxSource/",
-    footer_links= "IVOA Home|https://www.ivoa.net, Official Document Repository|https://www.ivoa.net/documents/, XML Schema|https://www.ivoa.net/xml/, Vocabularies|https://www.ivoa.net/rdf/"
-)
+extensions.append("pydata_sphinx_theme")
+html_theme = 'pydata_sphinx_theme'
+html_theme_options = {
+    "logo": {
+        "image_light": "_static/img/ivoa_logo71x40.jpg",
+        "image_dark": "_static/img/ivoa_logo71x40.jpg",
+        "text": "IVOA DocView",
+        "alt_text": "IVOA",
+    },
+    "navbar_start": ["navbar-logo"],
+    "navbar_center": ["navbar-nav"],
+    "navbar_end": ["theme-switcher", "navbar-icon-links"],
+    "navbar_persistent": ["search-button"],
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/ivoa/IvoaDocViewSite",
+            "icon": "fa-brands fa-github",
+        }
+    ],
+}
 html_static_path = ['_static']
 
 html_css_files = ["ivoa.css"]

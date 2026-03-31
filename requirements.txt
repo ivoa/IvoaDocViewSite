@@ -1,4 +1,4 @@
 Sphinx
-sphinx_wagtail_theme
+pydata-sphinx-theme
 bibtexparser>=2.0.0b8
 sphinxcontrib-bibtex

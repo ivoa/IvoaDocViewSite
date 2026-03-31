@@ -81,7 +81,7 @@ there is a script to report on the state of the submodules in [scripts/report_su
 
 then if you want to force update of a particular submodule
 
-```terminaloutput
+```shell
 cd src/<SubmoduleName>
 git fetch origin
 git checkout <branch>
@@ -91,7 +91,7 @@ git clean -fdx
 
 thn to update the submodule reference in the main repository at the top level directory
 
-```terminaloutput
+```shell
 git add src/<SubmoduleName>
 git commit -m "Update <SubmoduleName> submodule to latest origin/<branch>"
 ```
@@ -103,7 +103,7 @@ git submodule update --init --recursive --force
 git submodule foreach --recursive 'git reset --hard && git clean -fdx'
 ```
 
-```terminaloutput
+
 
 ### Adding a new standard document
 

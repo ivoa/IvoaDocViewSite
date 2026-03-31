@@ -1,6 +1,8 @@
 .SUFFIXES: .tex .md
 PYTHON?=python3
-texsource := $(shell cd src;for f in */ivoatex; do echo "$${f%/ivoatex}" ; done)
+texsourceall := $(shell cd src;for f in */ivoatex; do echo "$${f%/ivoatex}" ; done)
+# filter out some problematic sources for now
+texsource := $(filter-out DocRegExt HiPS ivoatexDoc moc ObsCore ObsCoreExtensionForRadioData schemaVersioning SIA SODA uat-as-upstream udf-catalogue, $(texsourceall))
 htmlsource := UWS
 
 #find the CWD for this makefile
@@ -77,11 +79,11 @@ clean_deps:
 # also want to use single customized ivoatex
 # also pandoc only looks in the cwd for tex modules
 dolink_ivoatex:
-	for i in $(texsource); do \
+	for i in $(texsourceall); do \
      (rm -rf $(SRCDIR)/$$i/ivoatex; cd $(SRCDIR)/$$i; ln -s ../ivoatex; ln -f -s ../ivoatex/ivoa.cls; rm -f docMeta.yaml)\
      done
 restore_ivoatex:
-	for i in $(texsource); do \
+	for i in $(texsourceall); do \
      (rm -rf $(SRCDIR)/$$i/ivoatex; cd $(SRCDIR)/$$i; rm -f ivoa.cls; git restore ivoatex;)\
      done
 

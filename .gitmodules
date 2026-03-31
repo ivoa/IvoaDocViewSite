@@ -49,7 +49,7 @@
 	url = https://github.com/ivoa-std/VOSpace
 [submodule "src/moc"]
 	path = src/moc
-	url = https://github.com/ivoa-std/MOC
+	url = https://github.com/pahjbo/MOC
 [submodule "src/AuthVO"]
 	path = src/AuthVO
 	url = https://github.com/ivoa-std/AuthVO
@@ -67,13 +67,13 @@
 	url = https://github.com/ivoa-std/VOSI
 [submodule "src/SODA"]
 	path = src/SODA
-	url = https://github.com/ivoa-std/SODA
+	url = https://github.com/pahjbo/SODA
 [submodule "src/ObscoreTimeExtension"]
 	path = src/ObscoreTimeExtension
 	url = https://github.com/ivoa-std/ObscoreTimeExtension
 [submodule "src/SIA"]
 	path = src/SIA
-	url = https://github.com/ivoa-std/SIA
+	url = https://github.com/pahjbo/SIA
 [submodule "src/GMS"]
 	path = src/GMS
 	url = https://github.com/ivoa-std/GMS
@@ -85,7 +85,7 @@
 	url = https://github.com/ivoa-std/TAPRegExt
 [submodule "src/HiPS"]
 	path = src/HiPS
-	url = https://github.com/ivoa-std/HiPS
+	url = https://github.com/pahjbo/HiPS
 [submodule "src/SSO"]
 	path = src/SSO
 	url = https://github.com/ivoa-std/SSO
@@ -97,13 +97,13 @@
 	url = https://github.com/ivoa-std/VOUnits
 [submodule "src/uat-as-upstream"]
 	path = src/uat-as-upstream
-	url = https://github.com/ivoa-std/UAT-as-upstream
+	url = https://github.com/pahjbo/UAT-as-upstream
 [submodule "src/udf-catalogue"]
 	path = src/udf-catalogue
-	url = https://github.com/ivoa-std/udf-catalogue
+	url = https://github.com/pahjbo/udf-catalogue
 [submodule "src/ObsCore"]
 	path = src/ObsCore
-	url = https://github.com/ivoa-std/ObsCore
+	url = https://github.com/pahjbo/ObsCore
 [submodule "src/data-origin"]
 	path = src/data-origin
 	url = https://github.com/ivoa-std/DataOrigin
@@ -118,16 +118,16 @@
 	url = https://github.com/ivoa-std/SLAP2
 [submodule "src/ivoatexDoc"]
 	path = src/ivoatexDoc
-	url = https://github.com/ivoa-std/ivoatexDoc
+	url = https://github.com/pahjbo/ivoatexDoc
 [submodule "src/ObsCoreExtensionForRadioData"]
 	path = src/ObsCoreExtensionForRadioData
-	url = https://github.com/ivoa-std/ObsCoreExtensionForRadioData
+	url = https://github.com/pahjbo/ObsCoreExtensionForRadioData
 [submodule "src/DocRegExt"]
 	path = src/DocRegExt
-	url = https://github.com/ivoa-std/DocRegExt
+	url = https://github.com/pahjbo/DocRegExt
 [submodule "src/schemaVersioning"]
 	path = src/schemaVersioning
-	url = https://github.com/ivoa-std/XMLVers
+	url = https://github.com/pahjbo/XMLVers
 [submodule "src/DocStd"]
 	path = src/DocStd
 	url = https://github.com/ivoa-std/DocStd

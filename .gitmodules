@@ -35,3 +35,99 @@
 [submodule "src/UCDlist"]
 	path = src/UCDlist
 	url = https://github.com/ivoa-std/UCDList
+[submodule "src/DataLink"]
+	path = src/DataLink
+	url = https://github.com/ivoa-std/DataLink
+[submodule "src/VOEvent"]
+	path = src/VOEvent
+	url = https://github.com/ivoa-std/VOEvent
+[submodule "src/ExecutionBroker"]
+	path = src/ExecutionBroker
+	url = https://github.com/ivoa-std/ExecutionBroker
+[submodule "src/VOSpace"]
+	path = src/VOSpace
+	url = https://github.com/ivoa-std/VOSpace
+[submodule "src/moc"]
+	path = src/moc
+	url = https://github.com/ivoa-std/MOC
+[submodule "src/AuthVO"]
+	path = src/AuthVO
+	url = https://github.com/ivoa-std/AuthVO
+[submodule "src/ObsLocTAP"]
+	path = src/ObsLocTAP
+	url = https://github.com/ivoa-std/ObsLocTAP
+[submodule "src/EPNTAP"]
+	path = src/EPNTAP
+	url = https://github.com/ivoa-std/EPNTAP
+[submodule "src/ObjObsSAP"]
+	path = src/ObjObsSAP
+	url = https://github.com/ivoa-std/ObjObsSAP
+[submodule "src/VOSI"]
+	path = src/VOSI
+	url = https://github.com/ivoa-std/VOSI
+[submodule "src/SODA"]
+	path = src/SODA
+	url = https://github.com/ivoa-std/SODA
+[submodule "src/ObscoreTimeExtension"]
+	path = src/ObscoreTimeExtension
+	url = https://github.com/ivoa-std/ObscoreTimeExtension
+[submodule "src/SIA"]
+	path = src/SIA
+	url = https://github.com/ivoa-std/SIA
+[submodule "src/GMS"]
+	path = src/GMS
+	url = https://github.com/ivoa-std/GMS
+[submodule "src/DAP"]
+	path = src/DAP
+	url = https://github.com/ivoa-std/DAP
+[submodule "src/TAPRegExt"]
+	path = src/TAPRegExt
+	url = https://github.com/ivoa-std/TAPRegExt
+[submodule "src/HiPS"]
+	path = src/HiPS
+	url = https://github.com/ivoa-std/HiPS
+[submodule "src/SSO"]
+	path = src/SSO
+	url = https://github.com/ivoa-std/SSO
+[submodule "src/StandardsRegExt"]
+	path = src/StandardsRegExt
+	url = https://github.com/ivoa-std/StandardsRegExt
+[submodule "src/VOUnits"]
+	path = src/VOUnits
+	url = https://github.com/ivoa-std/VOUnits
+[submodule "src/uat-as-upstream"]
+	path = src/uat-as-upstream
+	url = https://github.com/ivoa-std/UAT-as-upstream
+[submodule "src/udf-catalogue"]
+	path = src/udf-catalogue
+	url = https://github.com/ivoa-std/udf-catalogue
+[submodule "src/ObsCore"]
+	path = src/ObsCore
+	url = https://github.com/ivoa-std/ObsCore
+[submodule "src/data-origin"]
+	path = src/data-origin
+	url = https://github.com/ivoa-std/DataOrigin
+[submodule "src/LineTAP"]
+	path = src/LineTAP
+	url = https://github.com/ivoa-std/LineTAP
+[submodule "src/Vocabularies"]
+	path = src/Vocabularies
+	url = https://github.com/ivoa-std/vocinvo
+[submodule "src/SLAP2"]
+	path = src/SLAP2
+	url = https://github.com/ivoa-std/SLAP2
+[submodule "src/ivoatexDoc"]
+	path = src/ivoatexDoc
+	url = https://github.com/ivoa-std/ivoatexDoc
+[submodule "src/ObsCoreExtensionForRadioData"]
+	path = src/ObsCoreExtensionForRadioData
+	url = https://github.com/ivoa-std/ObsCoreExtensionForRadioData
+[submodule "src/DocRegExt"]
+	path = src/DocRegExt
+	url = https://github.com/ivoa-std/DocRegExt
+[submodule "src/schemaVersioning"]
+	path = src/schemaVersioning
+	url = https://github.com/ivoa-std/XMLVers
+[submodule "src/DocStd"]
+	path = src/DocStd
+	url = https://github.com/ivoa-std/DocStd

@@ -77,6 +77,34 @@ Git submodules that exist in [src](./src) can be difficult to manage - especiall
 git submodule update --recursive --remote
 ```
 
+there is a script to report on the state of the submodules in [scripts/report_submodule_state.py](./scripts/report_submodule_state.py) - this can be used to check that the submodules are up to date with their upstream repositories.
+
+then if you want to force update of a particular submodule
+
+```terminaloutput
+cd src/<SubmoduleName>
+git fetch origin
+git checkout <branch>
+git reset --hard origin/<branch>
+git clean -fdx
+```
+
+thn to update the submodule reference in the main repository at the top level directory
+
+```terminaloutput
+git add src/<SubmoduleName>
+git commit -m "Update <SubmoduleName> submodule to latest origin/<branch>"
+```
+
+to reset all of the submodules to the state of the checked in for this repository
+```shell
+git submodule sync --recursive
+git submodule update --init --recursive --force
+git submodule foreach --recursive 'git reset --hard && git clean -fdx'
+```
+
+```terminaloutput
+
 ### Adding a new standard document
 
 Adding a new standard document require the following steps

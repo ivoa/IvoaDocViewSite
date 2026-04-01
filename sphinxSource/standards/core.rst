@@ -10,4 +10,6 @@ Core vocabulary and structural specifications.
    ../idoc/IVOAArchitecture/IVOAArchitecture
    ../idoc/VOTable/VOTable
    ../idoc/UCDlist/UCDlist
+   ../idoc/Vocabularies/Vocabularies
+   ../idoc/DALI/DALI
 

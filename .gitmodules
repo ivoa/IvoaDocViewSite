@@ -12,7 +12,7 @@
 	url = https://github.com/ivoa-std/ConeSearch
 [submodule "src/VOTable"]
 	path = src/VOTable
-	url = https://github.com/pahjbo/VOTable
+	url = git@github.com:pahjbo/VOTable
 [submodule "src/ADQL"]
 	path = src/ADQL
 	url = https://github.com/ivoa-std/ADQL
@@ -21,7 +21,7 @@
 	url = https://github.com/ivoa-std/TAP
 [submodule "src/RegTAP"]
 	path = src/RegTAP
-	url = https://github.com/pahjbo/RegTAP
+	url = git@github.com:pahjbo/RegTAP
 [submodule "src/UWS"]
 	path = src/UWS
 	url = https://github.com/ivoa-std/UWS
@@ -31,7 +31,7 @@
 	branch = docrepobib
 [submodule "src/IVOAArchitecture"]
 	path = src/IVOAArchitecture
-	url = https://github.com/pahjbo/architecture
+	url = git@github.com:pahjbo/architecture
 [submodule "src/UCDlist"]
 	path = src/UCDlist
 	url = https://github.com/ivoa-std/UCDList
@@ -46,10 +46,10 @@
 	url = https://github.com/ivoa-std/ExecutionBroker
 [submodule "src/VOSpace"]
 	path = src/VOSpace
-	url = https://github.com/ivoa-std/VOSpace
+	url = git@github.com:pahjbo/VOSpace
 [submodule "src/moc"]
 	path = src/moc
-	url = https://github.com/pahjbo/MOC
+	url = git@github.com:pahjbo/MOC
 [submodule "src/AuthVO"]
 	path = src/AuthVO
 	url = https://github.com/ivoa-std/AuthVO
@@ -67,13 +67,13 @@
 	url = https://github.com/ivoa-std/VOSI
 [submodule "src/SODA"]
 	path = src/SODA
-	url = https://github.com/pahjbo/SODA
+	url = git@github.com:pahjbo/SODA
 [submodule "src/ObscoreTimeExtension"]
 	path = src/ObscoreTimeExtension
 	url = https://github.com/ivoa-std/ObscoreTimeExtension
 [submodule "src/SIA"]
 	path = src/SIA
-	url = https://github.com/pahjbo/SIA
+	url = git@github.com:pahjbo/SIA
 [submodule "src/GMS"]
 	path = src/GMS
 	url = https://github.com/ivoa-std/GMS
@@ -85,7 +85,7 @@
 	url = https://github.com/ivoa-std/TAPRegExt
 [submodule "src/HiPS"]
 	path = src/HiPS
-	url = https://github.com/pahjbo/HiPS
+	url = git@github.com:pahjbo/HiPS
 [submodule "src/SSO"]
 	path = src/SSO
 	url = https://github.com/ivoa-std/SSO
@@ -97,13 +97,13 @@
 	url = https://github.com/ivoa-std/VOUnits
 [submodule "src/uat-as-upstream"]
 	path = src/uat-as-upstream
-	url = https://github.com/pahjbo/UAT-as-upstream
+	url = git@github.com:pahjbo/UAT-as-upstream
 [submodule "src/udf-catalogue"]
 	path = src/udf-catalogue
-	url = https://github.com/pahjbo/udf-catalogue
+	url = git@github.com:pahjbo/udf-catalogue
 [submodule "src/ObsCore"]
 	path = src/ObsCore
-	url = https://github.com/pahjbo/ObsCore
+	url = git@github.com:pahjbo/ObsCore
 [submodule "src/data-origin"]
 	path = src/data-origin
 	url = https://github.com/ivoa-std/DataOrigin
@@ -118,16 +118,16 @@
 	url = https://github.com/ivoa-std/SLAP2
 [submodule "src/ivoatexDoc"]
 	path = src/ivoatexDoc
-	url = https://github.com/pahjbo/ivoatexDoc
+	url = git@github.com:pahjbo/ivoatexDoc
 [submodule "src/ObsCoreExtensionForRadioData"]
 	path = src/ObsCoreExtensionForRadioData
-	url = https://github.com/pahjbo/ObsCoreExtensionForRadioData
+	url = git@github.com:pahjbo/ObsCoreExtensionForRadioData
 [submodule "src/DocRegExt"]
 	path = src/DocRegExt
-	url = https://github.com/pahjbo/DocRegExt
+	url = git@github.com:pahjbo/DocRegExt
 [submodule "src/schemaVersioning"]
 	path = src/schemaVersioning
-	url = https://github.com/pahjbo/XMLVers
+	url = git@github.com:pahjbo/XMLVers
 [submodule "src/DocStd"]
 	path = src/DocStd
 	url = https://github.com/ivoa-std/DocStd

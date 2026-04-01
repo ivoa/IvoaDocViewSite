@@ -31,6 +31,8 @@ sudo tlmgr install enumitem
 sudo tlmgr install sidecap
 sudo tlmgr install xifthen
 sudo tlmgr install ifmtarg
+sudo tlmgr install relsize
+
 ```
 
 also to use a particular mirror

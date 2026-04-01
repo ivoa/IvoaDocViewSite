@@ -1,8 +1,8 @@
 .SUFFIXES: .tex .md
 PYTHON?=python3
 texsourceall := $(shell cd src;for f in */ivoatex; do echo "$${f%/ivoatex}" ; done)
-# filter out some problematic sources for now
-texsource := $(filter-out DocRegExt HiPS ivoatexDoc moc ObsCore ObsCoreExtensionForRadioData schemaVersioning SIA SODA uat-as-upstream udf-catalogue, $(texsourceall))
+# filter out some problematic sources for now DocRegExt HiPS ivoatexDoc moc ObsCore ObsCoreExtensionForRadioData schemaVersioning SIA SODA uat-as-upstream udf-catalogue
+texsource := $(filter-out UWS DocRegExt ivoatexDoc VOUnits udf-catalogue Vocabularies, $(texsourceall))
 htmlsource := UWS
 
 #find the CWD for this makefile

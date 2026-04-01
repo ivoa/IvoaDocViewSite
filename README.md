@@ -79,14 +79,14 @@ git submodule update --recursive --remote
 
 there is a script to report on the state of the submodules in [scripts/report_submodule_state.py](./scripts/report_submodule_state.py) - this can be used to check that the submodules are up to date with their upstream repositories.
 
-then if you want to force update of a particular submodule
+then if you want to force update of all submodules
 
 ```shell
-cd src/<SubmoduleName>
-git fetch origin
-git checkout <branch>
-git reset --hard origin/<branch>
-git clean -fdx
+git submodule foreach 'git fetch origin && \
+  BRANCH=$(git rev-parse --abbrev-ref origin/HEAD | cut -d/ -f2) && \
+  git checkout $BRANCH && \
+  git reset --hard origin/$BRANCH && \
+  git clean -fdx'
 ```
 
 thn to update the submodule reference in the main repository at the top level directory

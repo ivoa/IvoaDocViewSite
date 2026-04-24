@@ -77,7 +77,7 @@ Git submodules that exist in [src](./src) can be difficult to manage - especiall
 git submodule update --recursive --remote
 ```
 
-there is a script to report on the state of the submodules in [scripts/report_submodule_state.py](./scripts/report_submodule_state.py) - this can be used to check that the submodules are up to date with their upstream repositories.
+there is a script to report on the state of the submodules in [submodule_check.py](submodule_check.py) - this can be used to check that the submodules are up to date with their upstream repositories.
 
 then if you want to force update of all submodules
 
@@ -134,5 +134,17 @@ https://www.lua.org/pil/contents.html
 https://www.gammon.com.au/lpeg
 ### Sphinx Notes
 
+
+### Relationship diagram (PlantUML)
+
+A generated PlantUML source is kept at `sphinxSource/standards/relationships.puml`.
+It groups standards using the same categories as `sphinxSource/standards/*.rst`
+and adds hyperlinks to each rendered standard page (`idoc/<Doc>/<Doc>.html`).
+
+Regenerate it after rebuilding or updating standards content:
+
+```shell
+python3 generate_relationships_puml.py --repo-root /Users/pharriso/Work/ivoa/docs/multidoc
+```
 
 

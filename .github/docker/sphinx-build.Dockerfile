@@ -25,11 +25,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     xsltproc \
     cm-super \
     pdf2svg \
-    pandoc \
     plantuml \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
+
+# get the latest version of pandoc from github releases and install it
+RUN curl -L -o /tmp/pandoc.deb  https://github.com/jgm/pandoc/releases/download/3.9.0.2/pandoc-3.9.0.2-1-amd64.deb\
+    && dpkg -i /tmp/pandoc.deb \
+    && rm /tmp/pandoc.deb
 
 # Pre-install Python deps used by Sphinx build.
 COPY requirements.txt /tmp/requirements.txt

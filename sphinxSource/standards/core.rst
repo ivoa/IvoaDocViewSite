@@ -12,4 +12,5 @@ Core vocabulary and structural specifications.
    ../idoc/UCDlist/UCDlist
    ../idoc/Vocabularies/Vocabularies
    ../idoc/DALI/DALI
+   ../idoc/VOUnits/VOUnits
 

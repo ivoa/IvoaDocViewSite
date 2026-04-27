@@ -9,7 +9,7 @@ Standards focused on data models and data formats.
 
    ../idoc/moc/moc
    ../idoc/HiPS/HiPS
-    ../idoc/ObsCore/ObsCore
-    ../idoc/ObscoreTimeExtension/ObscoreTimeExtension
-    ../idoc/ObsCoreExtensionForRadioData/ObsCoreExtensionForRadioData
+   ../idoc/ObsCore/ObsCore
+   ../idoc/ObscoreTimeExtension/ObscoreTimeExtension
+   ../idoc/ObsCoreExtensionForRadioData/ObsCoreExtensionForRadioData
 

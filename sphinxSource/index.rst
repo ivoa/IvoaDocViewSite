@@ -19,7 +19,9 @@ This site offers an alternative integrated view on IVOA documentation
 
    standards/data-access
    standards/registry
+   standards/data-models
    standards/core
+   standards/security
 
 Bibliography
 ------------

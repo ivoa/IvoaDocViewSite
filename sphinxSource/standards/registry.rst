@@ -10,4 +10,5 @@ Standards for discovery and registry metadata.
    ../idoc/VOResource/VOResource
    ../idoc/VODataService/VODataService
    ../idoc/RegTAP/RegTAP
+   ../idoc/TAPRegExt/TAPRegExt
 

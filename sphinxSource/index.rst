@@ -22,6 +22,7 @@ This site offers an alternative integrated view on IVOA documentation
    standards/data-models
    standards/core
    standards/security
+   meta/Meta
 
 Bibliography
 ------------

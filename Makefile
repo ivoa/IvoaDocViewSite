@@ -43,6 +43,7 @@ $$(SPHINXDIR)/$(1)/$(1).rst : $$(SRCDIR)/$(1)/$(1).tex pandocCustomization/lates
 	  --metadata-file=docMeta.yaml \
 	   -s --wrap=none  -M bibmap=$$(PANDCUST)/latest_versions_map.yaml \
 	   --lua-filter=$$(PANDCUST)/relink-ivoa-citations.lua \
+	   --lua-filter=$$(PANDCUST)/autolink-docnames.lua \
 	   --lua-filter=$$(PANDCUST)/fix_internal_refs.lua \
 	   --lua-filter=$$(PANDCUST)/number-sections.lua --template=$$(PANDCUST)/default.rst\
 	     > $$(ROOTDIR)/$$@

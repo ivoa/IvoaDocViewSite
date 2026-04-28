@@ -35,6 +35,10 @@ class SubmoduleReport:
     upstream_short: str
     ahead_count: int
     commits: list[str]
+    unpushed_count: int
+    unpushed_commits: list[str]
+    modified_count: int
+    modified_files: list[str]
     fetch_error: Optional[str] = None
 
 
@@ -124,7 +128,7 @@ def build_report_for_submodule(
 ) -> SubmoduleReport:
     rel_path = submodule_path.relative_to(repo_root).as_posix()
     source_repo_url = detect_origin_url(submodule_path)
-
+    print(f"building report for {rel_path}")
     if fetch:
         fetch_res = run_cmd(["git", "fetch", "--quiet", "origin"], submodule_path)
         if fetch_res.returncode != 0:
@@ -136,6 +140,10 @@ def build_report_for_submodule(
                 upstream_short="?",
                 ahead_count=0,
                 commits=[],
+                unpushed_count=0,
+                unpushed_commits=[],
+                modified_count=0,
+                modified_files=[],
                 fetch_error=fetch_res.stderr or "unable to fetch origin",
             )
 
@@ -166,6 +174,34 @@ def build_report_for_submodule(
         if log_res.returncode == 0 and log_res.stdout:
             commits = [line for line in log_res.stdout.splitlines() if line][:max_commits]
 
+    unpushed_res = run_cmd(["git", "rev-list", "--count", f"{upstream_ref}..HEAD"], submodule_path)
+    unpushed_count = (
+        int(unpushed_res.stdout)
+        if unpushed_res.returncode == 0 and unpushed_res.stdout.isdigit()
+        else 0
+    )
+
+    unpushed_commits: list[str] = []
+    if unpushed_count > 0:
+        local_log_res = run_cmd(
+            [
+                "git",
+                "--no-pager",
+                "log",
+                "--no-merges",
+                "--pretty=format:  - %h %s (%an, %ad)",
+                "--date=short",
+                f"{upstream_ref}..HEAD",
+            ],
+            submodule_path,
+        )
+        if local_log_res.returncode == 0 and local_log_res.stdout:
+            unpushed_commits = [line for line in local_log_res.stdout.splitlines() if line][:max_commits]
+
+    modified_res = run_cmd(["git", "status", "--porcelain"], submodule_path)
+    modified_files = [line for line in modified_res.stdout.splitlines() if line] if modified_res.returncode == 0 else []
+    modified_count = len(modified_files)
+
     return SubmoduleReport(
         path=rel_path,
         source_repo_url=source_repo_url,
@@ -174,6 +210,10 @@ def build_report_for_submodule(
         upstream_short=upstream_short,
         ahead_count=ahead_count,
         commits=commits,
+        unpushed_count=unpushed_count,
+        unpushed_commits=unpushed_commits,
+        modified_count=modified_count,
+        modified_files=modified_files,
     )
 
 
@@ -201,14 +241,31 @@ def render_markdown(reports: list[SubmoduleReport]) -> str:
         lines.append(f"- upstream: `{r.upstream_ref}` (`{r.upstream_short}`)")
 
         if r.ahead_count == 0:
-            lines.append("- status: up to date")
+            lines.append("- upstream status: up to date")
         else:
-            lines.append(f"- status: {r.ahead_count} upstream commit(s) available")
-            lines.append("- new commits:")
+            lines.append(f"- upstream status: {r.ahead_count} upstream commit(s) available")
+            lines.append("- new upstream commits:")
             if r.commits:
                 lines.extend(r.commits)
             else:
                 lines.append("  - (unable to read commit list)")
+
+        if r.unpushed_count == 0:
+            lines.append("- push status: no local commits waiting to be pushed")
+        else:
+            lines.append(f"- push status: {r.unpushed_count} local commit(s) not pushed")
+            lines.append("- local unpushed commits:")
+            if r.unpushed_commits:
+                lines.extend(r.unpushed_commits)
+            else:
+                lines.append("  - (unable to read commit list)")
+
+        if r.modified_count == 0:
+            lines.append("- working tree: clean")
+        else:
+            lines.append(f"- working tree: {r.modified_count} modified/untracked file(s)")
+            lines.append("- modified files:")
+            lines.extend([f"  - `{entry}`" for entry in r.modified_files[:40]])
 
         lines.append("")
 

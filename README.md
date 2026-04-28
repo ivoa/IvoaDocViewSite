@@ -89,7 +89,13 @@ git submodule foreach 'git fetch origin && \
   git clean -fdx'
 ```
 
-thn to update the submodule reference in the main repository at the top level directory
+if you want to know what submodules have changes that are not committed, you can run
+
+```shell
+git status -uno --ignore-submodules=dirty --porcelain src
+```
+
+then to update the submodule reference in the main repository at the top level directory
 
 ```shell
 git add src/<SubmoduleName>

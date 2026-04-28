@@ -39,10 +39,10 @@ local EXPAND_COMMANDS = {
     ["\\LaTeX"]        = "LaTeX",
     ["\\BibTeX"]       = "BibTeX",
     ["\\textbackslash"]= "\\",
-    ["\\ldots"]        = "\226\128\166",  -- U+2026 HORIZONTAL ELLIPSIS
-    ["\\dots"]         = "\226\128\166",  -- U+2026 HORIZONTAL ELLIPSIS
-    ["\\lq"]           = "\226\128\152",  -- U+2018 LEFT SINGLE QUOTATION MARK
-    ["\\rq"]           = "\226\128\153",  -- U+2019 RIGHT SINGLE QUOTATION MARK
+    ["\\ldots"]        = "…",  -- U+2026 HORIZONTAL ELLIPSIS
+    ["\\dots"]         = "…",  -- U+2026 HORIZONTAL ELLIPSIS
+    ["\\lq"]           = "\xe2\x80\x98",  -- U+2018 LEFT SINGLE QUOTATION MARK (')
+    ["\\rq"]           = "\xe2\x80\x99",  -- U+2019 RIGHT SINGLE QUOTATION MARK (')
 }
 
 function RawInline(el)
@@ -83,16 +83,18 @@ function RawInline(el)
     end
 
     -- 5. \url{...} -> RST anonymous hyperlink
-    -- Note: [^}]+ does not handle percent-encoded closing braces (%7D); this
-    -- is an accepted limitation since IVOA standard sources use plain URLs.
+    -- Note: [^}]+ does not handle braces inside the URL (encoded as %7B/%7D
+    -- or unencoded).  IVOA standard sources use plain URLs without braces,
+    -- so this is an accepted limitation.
     local url = text:match("^\\url%s*%{([^}]+)%}$")
     if url then
         return pandoc.RawInline("rst", "`" .. url .. " <" .. url .. ">`__")
     end
 
     -- 6. \href{url}{text} -> RST anonymous hyperlink
-    -- Note: [^}]+ does not handle nested braces; accepted limitation for
-    -- standard IVOA source conventions.
+    -- Note: [^}]+ / [^}]* do not handle braces in either the URL or the link
+    -- text.  IVOA standard sources do not use braces in \href arguments, so
+    -- this is an accepted limitation.
     local href_url, href_text = text:match("^\\href%s*%{([^}]+)%}%s*%{([^}]*)%}$")
     if href_url then
         if href_text == "" then href_text = href_url end

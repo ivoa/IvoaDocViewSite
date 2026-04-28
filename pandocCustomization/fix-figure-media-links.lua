@@ -27,6 +27,11 @@ local function escape_rst_label(s)
     return s:gsub("`", "\\`")
 end
 
+-- Escape characters in a URL that would break RST angle-bracket delimiters.
+local function escape_rst_url(s)
+    return s:gsub(">", "%%3E")
+end
+
 function Image(el)
     if not is_pdf(el.src) then return end
 
@@ -36,7 +41,7 @@ function Image(el)
     end
 
     -- Emit an RST anonymous reference so the PDF is reachable as a link.
-    local rst = "`" .. escape_rst_label(alt) .. " <" .. el.src .. ">`__"
+    local rst = "`" .. escape_rst_label(alt) .. " <" .. escape_rst_url(el.src) .. ">`__"
     return pandoc.RawInline("rst", rst)
 end
 

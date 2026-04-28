@@ -16,9 +16,11 @@
 
 local function is_whitespace_only(inlines)
     -- Note: %s in Lua patterns matches ASCII whitespace only (space, tab,
-    -- newline, etc.).  Non-breaking spaces (U+00A0) and other Unicode
-    -- whitespace are not caught; this is acceptable for IVOA standards content
-    -- which is predominantly ASCII.
+    -- newline, etc.).  Unicode whitespace (e.g., U+00A0 non-breaking space)
+    -- will not be treated as empty, so a Span containing only a non-breaking
+    -- space will be kept rather than dropped.  This is acceptable for current
+    -- IVOA standards content; add a UTF-8 check here if Unicode-only whitespace
+    -- containers become a problem in the future.
     for _, el in ipairs(inlines) do
         local t = el.tag
         if t == "Space" or t == "SoftBreak" or t == "LineBreak" then

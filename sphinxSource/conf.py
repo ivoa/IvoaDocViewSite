@@ -7,6 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 import sys
 from pathlib import Path
+import subprocess
 
 #for local extensions
 sys.path.append(str(Path('_ext').resolve()))
@@ -56,7 +57,12 @@ html_css_files = ["ivoa.css"]
 
 # bibliography https://sphinxcontrib-bibtex.readthedocs.io/en/latest/index.html
 extensions.append("sphinxcontrib.bibtex")
-bibtex_bibfiles = ["../src/ivoatex/docrepo.bib"] # TODO add the individual bib files (though need to worry about duplicates and labels below....)
+# Build merged bibliography.
+_repo_root = Path(__file__).resolve().parents[1]
+_expand_script = _repo_root / "sphinxSource" / "_ext" / "merge_bibliographies.py"
+subprocess.run([sys.executable, str(_expand_script)], check=True)
+
+bibtex_bibfiles = ["_generated/docrepo-expanded.bib"]
 bibtex_default_style = 'IvoaStyle'
 
 import pybtex.plugin

@@ -1,6 +1,9 @@
 /.idea/
 /doc/generated/
 /sphinxSource/idoc/
+/sphinxSource/_generated/
+/sphinxSource/__pycache__/
+/sphinxSource/_ext/__pycache__/
 /build/
 /venv/
 /pandocCustomization/latest_versions_map.yaml

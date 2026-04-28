@@ -68,12 +68,16 @@ class IvoaLabelStyle(AlphaLabelStyle):
     """
     make the label look like document shortname and version
     """
-    def format_label(self, entry): # FIXME need to worry about bib entries that do not have these fields
-        return entry.fields["ivoa_docname"] + entry.fields["version"]
+    def format_label(self, entry): # TODO is this right for bib entries that do not have these fields
+        doc = entry.fields.get("ivoa_docname", entry.key)
+        ver = entry.fields.get("version", "")
+        return f"{doc}{ver}"
 
 class IvoaSorting(BaseSortingStyle):
     def sorting_key(self, entry):
-        return (entry.fields["ivoa_docname"] , entry.fields["version"])
+        doc = entry.fields.get("ivoa_docname", entry.key)
+        ver = entry.fields.get("version", "")
+        return (doc, ver)
 
 
 class IvoaStyle(AlphaStyle):

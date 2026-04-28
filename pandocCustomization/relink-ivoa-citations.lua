@@ -4,17 +4,23 @@
 local io = require 'io'
 
 local bibmap = {}
+local doc_to_bib = {}
 local docname
 
 function Meta(m)
 --  local mapfilepath = PANDOC_WRITER_OPTIONS.variables["bibmap"] -- this returns a Doc surprisingly... have to do via meta
     local mapfilepath = m["bibmap"]
     docname = pandoc.utils.stringify(m["DOCNAME"])
-    f = io.open(mapfilepath,"r")
+    local f = io.open(mapfilepath,"r")
     if f then
         for line in f:lines() do
-            bibmap[line:match('"([^"]+)"')] = line:match("^%a+")
+            local mapped_docname, mapped_bibkey = line:match('^([%w%-_]+):%s*"([^"]+)"')
+            if mapped_docname and mapped_bibkey then
+                bibmap[mapped_bibkey] = mapped_docname
+                doc_to_bib[mapped_docname] = mapped_bibkey
+            end
         end
+        f:close()
     else
         pandoc.log.error("cannot open " .. mapfilepath)
     end
@@ -22,24 +28,39 @@ end
 
 
 function Cite(c)
+    local outstring
     for _, v in ipairs(c.content) do -- FIXME really need to return table to match what is happening for multiple citation keys
         if (v.tag == "RawInline" and v.format == "latex") then
-            bibkey = v.text:match("{([^}]+)}")
-            if bibmap[bibkey] then
+            local bibkey = v.text:match("{([^}]+)}")
+            local std_docname = bibkey and bibkey:match("^std:([%w%-_]+)$")
+
+            if std_docname and doc_to_bib[std_docname] then
+                local citemode = v.text:match("\\cite([pt])")
+                if citemode then
+                    outstring = ":cite:" .. citemode .. ":`" .. doc_to_bib[std_docname] .. "`"
+                else
+                    outstring = ":cite:`" .. doc_to_bib[std_docname] .. "`"
+                end
+            elseif bibkey and bibmap[bibkey] then
                 -- TODO - is this the best way to present?
                 if(v.text:find("citep")) then
-                    citetext = "ref"
+                    local citetext = "ref"
+                    outstring = ":doc:`".. citetext .." <../" .. bibmap[bibkey] .. "/" .. bibmap[bibkey] ..">`"
                 else
-                    citetext = bibmap[bibkey]
+                    local citetext = bibmap[bibkey]
+                    outstring = ":doc:`".. citetext .." <../" .. bibmap[bibkey] .. "/" .. bibmap[bibkey] ..">`"
                 end
-                outstring = ":doc:`".. citetext .." <../" .. bibmap[bibkey] .. "/" .. bibmap[bibkey] ..">`"
             else
+
                 outstring = v.text:gsub("\\cite([pt]){([^}]+)}",":cite:%1:`%2`")
             end
 --            pandoc.log.info("raw ".. v.text .. " -> " .. outstring)
         end
     end
-    return {pandoc.RawInline("rst",outstring)}
+    if outstring then
+        return {pandoc.RawInline("rst",outstring)}
+    end
+    return c
 end
 
 return {

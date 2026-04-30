@@ -42,14 +42,8 @@ function Cite(c)
                     outstring = ":cite:`" .. doc_to_bib[std_docname] .. "`"
                 end
             elseif bibkey and bibmap[bibkey] then
-                -- TODO - is this the best way to present?
-                if(v.text:find("citep")) then
-                    local citetext = "ref"
-                    outstring = ":doc:`".. citetext .." <../" .. bibmap[bibkey] .. "/" .. bibmap[bibkey] ..">`"
-                else
-                    local citetext = bibmap[bibkey]
-                    outstring = ":doc:`".. citetext .." <../" .. bibmap[bibkey] .. "/" .. bibmap[bibkey] ..">`"
-                end
+                local citetext = bibmap[bibkey]
+                outstring = ":doc:`".. citetext .." <../" .. bibmap[bibkey] .. "/" .. bibmap[bibkey] ..">`"
             else
 
                 outstring = v.text:gsub("\\cite([pt]){([^}]+)}",":cite:%1:`%2`")

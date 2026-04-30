@@ -45,6 +45,10 @@ $$(SPHINXDIR)/$(1)/$(1).rst : $$(SRCDIR)/$(1)/$(1).tex pandocCustomization/lates
 	   --lua-filter=$$(PANDCUST)/relink-ivoa-citations.lua \
 	   --lua-filter=$$(PANDCUST)/autolink-docnames.lua \
 	   --lua-filter=$$(PANDCUST)/fix_internal_refs.lua \
+	   --lua-filter=$$(PANDCUST)/sanitize-raw-inline.lua \
+	   --lua-filter=$$(PANDCUST)/fix-figure-media-links.lua \
+	   --lua-filter=$$(PANDCUST)/drop-empty-inline-shells.lua \
+	   --lua-filter=$$(PANDCUST)/drop-conformance-section.lua \
 	   --lua-filter=$$(PANDCUST)/number-sections.lua --template=$$(PANDCUST)/default.rst\
 	     > $$(ROOTDIR)/$$@
 	make -C $$(dir $$<) -f $$(ROOTDIR)/util.mk -f Makefile copyRequiredFiles TODIR=$$(ROOTDIR)/$$(dir $$@)
